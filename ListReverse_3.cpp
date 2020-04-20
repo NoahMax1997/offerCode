@@ -49,6 +49,7 @@ void reverseListByStack(Node* head){
 		//Node t=s.top();
 		// tail->next=&t; this is wrong;the memery id  of t is always same;
 		tail->next=&s.top();
+		
 		tail=tail->next;
 		s.pop();
 	}
