@@ -1,27 +1,65 @@
 #include <iostream>
 #include <vector>
+#include <stack>
 using namespace std;
-//ตÝน้
+//recursion
 typedef struct n{
 	int val;
 	n* next; 
 }Node;
 Node* start=new Node;
 Node* ret=new Node;
-void reverseLink(Node* head){
-	if(head==NULL) ret=NULL;
-	else{
-		reverseLink(head->next);
-		ret->val=head->val;
-		ret=ret->next;
-		ret=new Node;
+stack<Node> s;
+void reverseListByRecursion(Node* node){
+	if(node==NULL) return;
+	else if(node->val==-1){
+		ret->next=NULL;
+		ret->val=-1;
+		reverseListByRecursion(node->next);
+	}
+	else{	
+		Node* t=new Node;
+		t->val=node->val;
+		t->next=ret->next;
+		ret->next=t;
+		reverseListByRecursion(node->next);
 	}
 }
+void reverseListByHeadInsert(Node* head){
+	ret->next=NULL;
+	Node* temp=head->next;
+	while(temp!=NULL){
+		Node* t=new Node;
+		t->val=temp->val;
+		t->next=ret->next;
+		ret->next=t;
+		temp=temp->next;
+	}
+}
+void reverseListByStack(Node* head){
+	Node* temp=head->next;
+   	while(temp!=NULL){
+		Node* t=new Node;
+		t->val=temp->val;
+		s.push(*t);
+		temp=temp->next;
+	}
+	Node* tail=ret;
+	while(!s.empty()){
+		//Node t=s.top();
+		// tail->next=&t; this is wrong;the memery id  of t is always same;
+		tail->next=&s.top();
+		tail=tail->next;
+		s.pop();
+	}
+	tail->next=NULL;
+}
 void print(Node* head){
-	Node* t=head;
+ 	Node* t=head->next;
 	while(t!=NULL){
-		cout<<(t->val)<<"->";
+		cout<<(t->val);
 		t=t->next;
+		if(t!=NULL) cout<<"->";
 	}
 	cout<<endl;
 }
@@ -29,6 +67,7 @@ void initLink(Node* head){
 	int n;
 	cin>>n;
 	Node* tail=head;
+	head->val=-1;
 //	t=new Node;
 //	cout<<"test:"<<(t==head)<<"\n";
 	while(n--){	
@@ -43,7 +82,9 @@ void initLink(Node* head){
 int main (){
 	initLink(start);
 	print(start);
-	reverseLink(start);
+	// reverseListByRecursion(start);
+	// reverseListByHeadInsert(start);
+	reverseListByStack(start);
 	print(ret);
 	return 0;
 }
