@@ -1,14 +1,7 @@
-#include <iostream>
-#include <string>
-#include <algorithm>
-#include <set>
-#include <map>
-#include <stack>
-#include <cmath>
-#include <vector>
-using namespace std;
+#include "frequent_head_file.h"
 template <class T>
 void PrintContainer(T &t){
+    //confilm t is basic type
     for(auto i:t){
         cout<<i<<endl;
     }
@@ -23,4 +16,5 @@ void formatStrByInt(string &str){
         }
     }
 }
+
 
