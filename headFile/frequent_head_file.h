@@ -8,19 +8,20 @@
 #include <vector>
 using namespace std;
 template <class T>
-void PrintContainer(T &t){
-    for(auto i:t){
-        cout<<i<<endl;
-    }
-}
-void formatStrByInt(string &str){
-    for(int i=0;i<str.size();i++){
-        if(str[i]=='0'){
-            str.erase(i);
-        }else{
-            // str=str.substr(i,str.size()-i);
-            break;
-        }
-    }
-}
+void PrintContainer(T &t);
+void formatStrByInt(string &str);
+struct TreeNode
+{
+    int val;
+    TreeNode *left;
+    TreeNode *right;
+    TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+};
+struct ListNode
+{
+    int val;
+    ListNode *next;
+    ListNode(int x) : val(x), next(NULL) {}
+};
+
 
