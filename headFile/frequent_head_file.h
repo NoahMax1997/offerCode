@@ -6,6 +6,7 @@
 #include <stack>
 #include <cmath>
 #include <vector>
+#include <queue>
 using namespace std;
 template <class T>
 void PrintContainer(T &t);
