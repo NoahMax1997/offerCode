@@ -11,6 +11,7 @@ using namespace std;
 template <class T>
 void PrintContainer(T &t);
 void formatStrByInt(string &str);
+long long Pow[10]={1,10,100,1000,10000,100000,1000000,1e7,1e8};
 struct TreeNode
 {
     int val;
