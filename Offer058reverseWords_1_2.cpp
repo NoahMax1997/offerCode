@@ -72,6 +72,20 @@ public:
         return ret;
     }
 
+    string reverseLeftWords(string s, int n) {
+        string ret = "";
+        for (size_t i = n; i < s.size(); i++)
+        {
+            /* code */
+            ret += s[i];
+        }
+        for (size_t i = 0; i < n; i++)
+        {
+            /* code */
+            ret += s[i];
+        }
+        return ret;
+    }
 };
 int main()
 {
