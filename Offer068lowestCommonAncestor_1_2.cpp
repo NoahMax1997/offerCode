@@ -86,15 +86,60 @@ public:
         return ret;
     }
 
-    void dfs(TreeNode* root,TreeNode* p, TreeNode* q){
-        if (root->val == )
+    map<TreeNode*,TreeNode*> Map;
+    set<TreeNode*> Set;
+    void dfsFather(TreeNode* root){
+        if(root == nullptr) return;
+        if (root->left != nullptr)
         {
             /* code */
+            Map[root->left] = root;
         }
-        
+        if (root->right != nullptr)
+        {
+            /* code */
+            Map[root->right] = root;
+        }
     }
     TreeNode* lowestCommonAncestorBinaryTree(TreeNode* root, TreeNode* p, TreeNode* q) {
+        Map[root] = nullptr;
+        dfsFather(root);
+        TreeNode *tmp = Map[p];
+        while (tmp != nullptr)
+        {
+            /* code */
+            Set.insert(tmp);
+            tmp = Map[tmp];
+        }
+        TreeNode *tmp = Map[q];
+        while (Set.find(tmp) != Set.end())
+        {
+            /* code */
+            tmp = Map[tmp];
+        }
+        return tmp;
+    }
+
+    TreeNode* ans;
+    bool dfsLR(TreeNode* root, TreeNode* p, TreeNode* q){
+        if (root == nullptr)
+        {
+            /* code */
+            return false;
+        }
+        bool left = dfsLR(root->left,p,q);
+        bool right = dfsLR(root->right,p,q);
+        if (left&&right||(root->val == p->val || root->val == q->val) && (right||left))
+        {
+            /* code */
+            ans = root;
+        }
         
+        return left || right || root->val == p->val || root->val == q->val;
+    }
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p,TreeNode* q) {
+        dfsLR(root,p,q);
+        return ans;
     }
 };
 int main()
